@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>  <!-- DTD까지만 하면 에러떨어짐. configuration 까지써놓고 저장하기-->
+<properties resource="db.properties"></properties>  <!--드라이버,url 등이 이제 db.properties 넘어갔으니까 이 파일이 있다고 마이바티스에게 알려줘야함  -->
+
+<typeAliases>
+	<typeAlias type="member.bean.MemberDTO" alias="member" />  <!-- alias=별명 xml 안에서 마이바티스 안에서 는 이 별명으로 쓰겠다 라고 함것-->
+	<typeAlias type="member.bean.ZipcodeDTO" alias="zipcode" />
+</typeAliases>
+
+	<environments default="development">  <!-- 마이바티스가 제공하는것 그대로따라가야함 위 아래 s 자 조심 -->
+		<environment id="development">
+		<transactionManager type="JDBC" />
+		<dataSource type="POOLED">  <!-- 우리는 커넥션 풀을 이용할거라서 데이터소스 기재한다.  -->
+		<property name="driver" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/><!-- 원래 value 를 따로 관리하면셔 숨겨야함  -->
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		</dataSource>
+		
+		</environment>
+			
+	</environments>
+	<mappers>  <!-- 맵퍼파일의 경로(sql문장)를 알려줘야함 -->
+		<mapper resource="member/dao/memberMapper.xml"/>  <!--ㄴsql의 문장은 여기 맵퍼파일에 잇따. 리소스는 결로라서  /를 써줘야 함  -->
+	</mappers>
+
+</configuration>
