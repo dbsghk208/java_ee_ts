@@ -9,7 +9,7 @@
 <style type="text/css">
  body{
       margin: 0;
-      padding: 0;
+      padding: 30;
       height: 100%;
       width: auto;
    }
